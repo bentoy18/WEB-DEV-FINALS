@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+    margin: 0;
+    padding: 2rem;
+    box-sizing: border-box;
+    background-color: rgb(255, 255, 255);
+}
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: black;
+    background-size: cover;
+    background-position: center;
+}
+p,
+label {
+  font:
+    1rem 'Fira Sans',
+    sans-serif;
+}
+
+input {
+  margin: 0.4rem;
+}
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+<fieldset>
+    <legend>Form</legend>
+    <div class="Name">
+        <label>name</label>
+        <input type="text" name="name" id="name" placeholder="enter name">
+    <div>
+
+    <div class="Email">
+        <label>email</label>
+        <input type="email" name="email" id="email" placeholder="enter email">
+    <div>
+
+    <div class="Age">
+        <label>age</label>
+        <input type="number" name="age" id="age" placeholder="enter age">
+    <div>
+
+    <div class="course">
+        <label>Course</label>
+        <select name="course" id="course">
+            <option value="">BSIT</option>
+            <option value="">BSHM</option>
+            <option value="">BEED</option>
+            <option value="">BSED</option>
+        </select>
+    </div>
+</fieldset>
+    <fieldset>
+        <legend>Gender:</legend>
+    <div class="male">
+        <label for="male">male</label>
+        <input type="checkbox" name="male" id="male">
+    </div>
+
+    <div class="female">
+        <label for="female">female</label>
+        <input type="checkbox" name="female" id="female">
+    </div>
+</fieldset>
+
+    <fieldset>
+        <legend>Hobbies:</legend>
+      
+        <div>
+          <input type="radio" id="huey" name="drone" value="huey" checked />
+          <label for="huey">Gaming</label>
+        </div>
+      
+        <div>
+          <input type="radio" id="dewey" name="drone" value="dewey" />
+          <label for="dewey">Sports</label>
+        </div>
+      
+        <div>
+          <input type="radio" id="louie" name="drone" value="louie" />
+          <label for="louie">Dancing</label>
+        </div>
+        <div>
+            <input type="radio" id="read" name="drone" value="read" />
+            <label for="read">Reading</label>
+          </div>
+      </fieldset>
+      
+<center>
+    <div class="bio">
+        <div class="bio1">
+          <label>Bio</label>
+        </div>
+        <div class="text">
+          <textarea id="subject" name="subject" placeholder="Write bio" style="height:200px"></textarea>
+        </div>
+    </center>
+</div>
+</body>
+</html>

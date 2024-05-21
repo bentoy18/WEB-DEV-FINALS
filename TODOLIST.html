@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Manager</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      padding-top: 50px;
+      background-color: #f0f0f0;
+    }
+
+    h1 {
+      font-size: 50px;
+      font-weight: 900;
+      color: #333;
+    }
+
+   .container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+   .form-group {
+      margin-bottom: 20px;
+    }
+
+   .form-control {
+      border-color: #ccc;
+    }
+
+   .btn-primary {
+      background-color: #337ab7;
+      border-color: #2e6da4;
+    }
+
+   .btn-danger {
+      background-color: #d9534f;
+      border-color: #d43f3a;
+    }
+
+    #taskList {
+      margin-top: 20px;
+    }
+
+   .card {
+      margin-bottom: 20px;
+      border-color: #ddd;
+    }
+
+   .card-body {
+      padding: 20px;
+    }
+
+   .card-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+    }
+
+   .card-text {
+      font-size: 14px;
+      color: #666;
+    }
+
+   .text-muted {
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center mb-4">TASK MANAGER</h1>
+    <form id="taskForm">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" required>
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" rows="3" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" class="form-control" id="date" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Add Task</button>
+    </form>
+
+    <hr>
+
+    <div id="taskList"></div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      var tasks = [];
+
+      function addTask(title, description, date) {
+        var task = {
+          title: title,
+          description: description,
+          date: date
+        };
+        tasks.push(task);
+        displayTasks();
+      }
+
+      function deleteTask(index) {
+        tasks.splice(index, 1);
+        displayTasks();
+      }
+
+      function displayTasks() {
+        var taskList = $('#taskList');
+        taskList.empty();
+        if (tasks.length === 0) {
+          taskList.append('<p>No tasks found.</p>');
+        } else {
+          tasks.forEach(function(task, index) {
+            var taskItem = `
+              <div class="card mb-3">
+                <div class="card-body">
+                  <h5 class="card-title">${task.title}</h5>
+                  <p class="card-text">${task.description}</p>
+                  <p class="card-text"><small class="text-muted">Date: ${task.date}</small></p>
+                  <button type="button" class="btn btn-danger delete-task" data-index="${index}">Delete</button>
+                </div>
+              </div>
+            `;
+            taskList.append(taskItem);
+          });
+        }
+      }
+
+      $('#taskForm').submit(function(e) {
+        e.preventDefault();
+        var title = $('#title').val();
+        var description = $('#description').val();
+        var date = $('#date').val();
+        addTask(title, description, date);
+        $('#title').val('');
+        $('#description').val('');
+        $('#date').val('');
+      });
+
+      $(document).on('click', '.delete-task', function() {
+        var index = $(this).data('index');
+        deleteTask(index);
+      });
+    });
+  </script>
+</body>
+</html>
